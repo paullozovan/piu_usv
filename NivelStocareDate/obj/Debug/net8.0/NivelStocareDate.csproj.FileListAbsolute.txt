@@ -13,3 +13,4 @@ D:\prog\piu\NivelStocareDate\obj\Debug\net8.0\NivelStocareDate.dll
 D:\prog\piu\NivelStocareDate\obj\Debug\net8.0\refint\NivelStocareDate.dll
 D:\prog\piu\NivelStocareDate\obj\Debug\net8.0\NivelStocareDate.pdb
 D:\prog\piu\NivelStocareDate\obj\Debug\net8.0\ref\NivelStocareDate.dll
+D:\prog\piu\NivelStocareDate\obj\Debug\net8.0\NivelStocareDate.sourcelink.json

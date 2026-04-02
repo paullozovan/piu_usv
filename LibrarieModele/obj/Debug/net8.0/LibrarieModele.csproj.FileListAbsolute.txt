@@ -9,3 +9,5 @@ D:\prog\piu\LibrarieModele\obj\Debug\net8.0\LibrarieModele.dll
 D:\prog\piu\LibrarieModele\obj\Debug\net8.0\refint\LibrarieModele.dll
 D:\prog\piu\LibrarieModele\obj\Debug\net8.0\LibrarieModele.pdb
 D:\prog\piu\LibrarieModele\obj\Debug\net8.0\ref\LibrarieModele.dll
+D:\prog\piu\LibrarieModele\obj\Debug\net8.0\LibrarieModele.csproj.AssemblyReference.cache
+D:\prog\piu\LibrarieModele\obj\Debug\net8.0\LibrarieModele.sourcelink.json

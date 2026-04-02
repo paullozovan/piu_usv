@@ -6,7 +6,7 @@ namespace testpiu
 {
     class Program
     {
-        static AdministrareMedicamente adminMed = new AdministrareMedicamente();
+        static IStocareData adminMed = StocareFactory.GetAdministratorStocare();
         public static void Main()
         {
             List<medicament> meds = adminMed.GetMeds();
@@ -20,6 +20,7 @@ namespace testpiu
                 Console.WriteLine("S. Salvare medicament in lista");
                 Console.WriteLine("F. Cauta medicament");
                 Console.WriteLine("G. Cauta medicamente dupa categorii");
+                Console.WriteLine("U. Actualizare medicament");
                 Console.WriteLine("X. Inchidere program");
                 Console.WriteLine("Alegeti o optiune");
                 opt = Console.ReadLine()?.ToUpper() ?? string.Empty;
@@ -35,13 +36,20 @@ namespace testpiu
                         break;
 
                     case "A":
+                        meds = adminMed.GetMeds();
                         AfisareMedicamente(meds);
                         break;
 
                     case "S":
-                        med.id = meds.Count + 1;
-                        meds.Add(med);
-                        Console.WriteLine("Medicament salvat.");
+                        if (med != null)
+                        {
+                            adminMed.AddMed(med);
+                            Console.WriteLine("Medicament salvat.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Nu exista medicament de salvat. Cititi unul mai intai.");
+                        }
                         break;
 
                     case "F":
@@ -50,6 +58,10 @@ namespace testpiu
 
                     case "G":
                         GetMedsCat();
+                        break;
+
+                    case "U":
+                        UpdateMedicament();
                         break;
 
                     case "X":
@@ -99,9 +111,9 @@ namespace testpiu
 
             return med;
         }
-        public static void AfisareMedicament(medicament med)
+        public static void AfisareMedicament(medicament? med)
         {
-            Console.WriteLine(med.info());
+            Console.WriteLine(med?.info());
         }
         public static void AfisareMedicamente(List<medicament> meds)
         {
@@ -152,6 +164,59 @@ namespace testpiu
                 Console.WriteLine("Medicamentul nu a fost introdus");
             else
                 AfisareMedicament(md);
+        }
+        public static void UpdateMedicament()
+        {
+            Console.WriteLine("Introduceti ID-ul medicamentului de actualizat:");
+            string idString = Console.ReadLine();
+            int.TryParse(idString, out int id);
+            medicament? med = adminMed.GetMed(id);
+            if (med == null)
+            {
+                Console.WriteLine("Medicamentul cu ID-ul specificat nu a fost gasit.");
+                return;
+            }
+            Console.WriteLine("Introduceti noua denumire (lasa gol pentru a pastra denumirea curenta):");
+            string newDen = Console.ReadLine();
+            if (!string.IsNullOrEmpty(newDen))
+            {
+                med.den = newDen;
+            }
+            Console.WriteLine("Introduceti noul pret (lasa gol pentru a pastra pretul curent):");
+            string newPretString = Console.ReadLine();
+            if (!string.IsNullOrEmpty(newPretString) && int.TryParse(newPretString, out int newPret))
+            {
+                med.pret = newPret;
+            }
+            Console.WriteLine("Introduceti noul mod de eliberare (1 - Cu Prescriptie, 2 - Fara Prescriptie, lasa gol pentru a pastra modul curent):");
+            string newOptString = Console.ReadLine();
+            if (!string.IsNullOrEmpty(newOptString) && int.TryParse(newOptString, out int newOpt))
+            {
+                if (med.setopt(newOpt))
+                {
+                }
+                else
+                {
+                    Console.WriteLine("Mod de eliberare invalid. Modul curent a fost pastrat.");
+                }
+            }
+            Console.WriteLine("Introduceti noile categorii (introduceti numerele dorite separate prin spatiu, lasa gol pentru a pastra categoriile curente):");
+            string newCatString = Console.ReadLine();
+            if (!string.IsNullOrEmpty(newCatString))
+            {
+                if (med.setcat(newCatString))
+                {
+                }
+                else
+                {
+                    Console.WriteLine("Categorii invalide. Categoriile curente au fost pastrate.");
+                }
+            }
+            bool success = adminMed.UpdateMedicament(med);
+            if (success)
+                Console.WriteLine("Medicament actualizat cu succes.");
+            else
+                Console.WriteLine("Eroare la actualizarea medicamentului.");
         }
     }
 }

@@ -1,16 +1,16 @@
 ﻿using LibrarieModele;
 namespace NivelStocareDate
 {
-    public class AdministrareMedicamente
+    public class AdministrareMedicamente : IStocareData
     {
-        public List<medicament> meds;
+        private List<medicament> meds;
 
         public AdministrareMedicamente()
         {
             meds = new List<medicament>();
         }
 
-        public void AddStudent(medicament med)
+        public void AddMed(medicament med)
         {
             med.id = GetNextIdMed();
             meds.Add(med);

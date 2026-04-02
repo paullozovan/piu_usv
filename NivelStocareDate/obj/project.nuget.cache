@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "oNrstcltMgA=",
+  "dgSpecHash": "BDMb5DHo4ps=",
   "success": true,
   "projectFilePath": "D:\\prog\\piu\\NivelStocareDate\\NivelStocareDate.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\m1nato\\.nuget\\packages\\system.configuration.configurationmanager\\10.0.5\\system.configuration.configurationmanager.10.0.5.nupkg.sha512",
+    "C:\\Users\\m1nato\\.nuget\\packages\\system.diagnostics.eventlog\\10.0.5\\system.diagnostics.eventlog.10.0.5.nupkg.sha512",
+    "C:\\Users\\m1nato\\.nuget\\packages\\system.security.cryptography.protecteddata\\10.0.5\\system.security.cryptography.protecteddata.10.0.5.nupkg.sha512"
+  ],
   "logs": []
 }

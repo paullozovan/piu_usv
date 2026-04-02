@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,14 +9,22 @@ namespace LibrarieModele
 {
     public class medicament
     {
+        private const char SEPARATOR_PRINCIPAL_FISIER = ';';
+        private const char SEPARATOR_SECUNDAR_FISIER = ' ';
+        private const bool SUCCES = true;
+        private const int ID = 0;
+        private const int DENUMIRE = 1;
+        private const int PRET = 2;
+        private const int MOD = 3;
+        private const int CATEGORII = 4;
         [Flags]
         public enum CategoriiMedicament
         {
-            Analgezic = 1,      
-            Antipyretic = 2,    
-            Antiinflamator = 4, 
-            Antibiotic = 8,     
-            Antiviral = 16     
+            Analgezic = 1,
+            Antipyretic = 2,
+            Antiinflamator = 4,
+            Antibiotic = 8,
+            Antiviral = 16
         }
         public enum ModEliberare
         {
@@ -67,7 +76,7 @@ namespace LibrarieModele
             }
             return true;
         }
-        public medicament() 
+        public medicament()
         {
             id = 0;
             den = string.Empty;
@@ -79,6 +88,16 @@ namespace LibrarieModele
             this.id = id;
             this.den = den;
             this.pret = pret;
+        }
+        public medicament(string linieFisier)
+        {
+            string[] date = linieFisier.Split(SEPARATOR_PRINCIPAL_FISIER);
+            id = int.Parse(date[ID]);
+            den = date[DENUMIRE];
+            pret = int.Parse(date[PRET]);
+            opt = int.Parse(date[MOD]);
+            mod = ((ModEliberare)opt).ToString();
+            categorii = (CategoriiMedicament)Enum.Parse(typeof(CategoriiMedicament), date[CATEGORII]);
         }
 
         public string info()
@@ -93,6 +112,18 @@ Categorii: {categoriiText}
 --------------------------------------";
         }
 
-
+        public string ConvertToFileFormat()
+        {
+            string categoriiText = categorii.ToString();
+            string modText = ((ModEliberare)opt).ToString();
+            string linieFisier = string.Format("{0}{1}{2}{1}{3}{1}{4}{1}{5}",
+                id, 
+                SEPARATOR_PRINCIPAL_FISIER,
+                den, 
+                pret, 
+                opt, 
+                categoriiText);
+            return linieFisier;
+        }
     }
 }

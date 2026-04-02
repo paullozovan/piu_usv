@@ -1,0 +1,7 @@
+1;Aspirina;15;2;Analgezic, Antipyretic, Antiinflamator
+2;Paracetamol;11;2;Analgezic, Antipyretic
+3;Amoxicilina;25;1;Antibiotic
+4;Tamiflu;19;1;Antiviral
+5;Fervex;35;1;Analgezic, Antipyretic, Antiviral
+6;Augmentin;17;1;Antiinflamator, Antibiotic
+7;Bioflu;39;2;Analgezic, Antipyretic, Antiinflamator, Antiviral
