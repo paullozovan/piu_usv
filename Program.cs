@@ -1,12 +1,15 @@
 ﻿using System.Security.Cryptography.X509Certificates;
+using LibrarieModele;
+using NivelStocareDate;
 
 namespace testpiu
 {
     class Program
     {
-        public static List<medicament> meds = new List<medicament>();
-        static void Main()
+        static AdministrareMedicamente adminMed = new AdministrareMedicamente();
+        public static void Main()
         {
+            List<medicament> meds = adminMed.GetMeds();
             medicament med = null;
             string opt;
             do
@@ -15,8 +18,9 @@ namespace testpiu
                 Console.WriteLine("I. Afisarea informatiilor despre ultimul medicament introdus");
                 Console.WriteLine("A. Afisare medicamente din lista");
                 Console.WriteLine("S. Salvare medicament in lista");
-                Console.WriteLine("X. Inchidere program");
                 Console.WriteLine("F. Cauta medicament");
+                Console.WriteLine("G. Cauta medicamente dupa categorii");
+                Console.WriteLine("X. Inchidere program");
                 Console.WriteLine("Alegeti o optiune");
                 opt = Console.ReadLine()?.ToUpper() ?? string.Empty;
 
@@ -31,7 +35,7 @@ namespace testpiu
                         break;
 
                     case "A":
-                        AfisareStudenti(meds);
+                        AfisareMedicamente(meds);
                         break;
 
                     case "S":
@@ -41,13 +45,11 @@ namespace testpiu
                         break;
 
                     case "F":
-                        Console.WriteLine("Introduceti Denumirea");
-                        string denum = Console.ReadLine();
-                        medicament md = GetMedicament(denum);
-                        if (md == null)
-                            Console.WriteLine("Medicamentul nu a fost introdus");
-                        else
-                            AfisareMedicament(md);
+                        GetMedicament();
+                        break;
+
+                    case "G":
+                        GetMedsCat();
                         break;
 
                     case "X":
@@ -61,16 +63,6 @@ namespace testpiu
 
             } while (opt.ToUpper() != "X");
 
-            Console.ReadKey();
-            Console.WriteLine("Introduceti id, denumire si pretul medicamentului:");
-            string idstring = Console.ReadLine();
-            int.TryParse(idstring, out int id);
-            string den = Console.ReadLine();
-            string pretstring = Console.ReadLine();
-            int.TryParse(pretstring, out int pret);
-            var med1 = new medicament(id, den, pret);
-            Console.WriteLine(med1.info());
-            Console.ReadKey();
         }
         public static medicament CitireMedicamentTastatura()
         {
@@ -79,13 +71,39 @@ namespace testpiu
             string pretstring = Console.ReadLine();
             int.TryParse(pretstring, out int pret);
             medicament med = new medicament(0, den, pret);
+            Console.WriteLine("Introduceti modul de eliberare \n" +
+                "1 - Cu Prescriptie\n" +
+                "2 - Fara Prescriptie:");
+            bool validInput = false;
+            while (!validInput)
+            {
+                int opt = Convert.ToInt32(Console.ReadLine());
+                validInput = med.setopt(opt);
+            }
+            Console.WriteLine("Selectati categoriile (introduceti numerele dorite separate prin spatiu):");
+            Console.WriteLine("1 - Analgezic");
+            Console.WriteLine("2 - Antipyretic");
+            Console.WriteLine("4 - Antiinflamator");
+            Console.WriteLine("8 - Antibiotic");
+            Console.WriteLine("16 - Antiviral");
+            bool validCatInput = false;
+            while (!validCatInput)
+            {
+                string catString = Console.ReadLine();
+                validCatInput = med.setcat(catString);
+                if (!validCatInput)
+                {
+                    Console.WriteLine("Introduceti categoriile corect!");
+                }
+            }
+
             return med;
         }
         public static void AfisareMedicament(medicament med)
         {
             Console.WriteLine(med.info());
         }
-        public static void AfisareStudenti(List<medicament> meds)
+        public static void AfisareMedicamente(List<medicament> meds)
         {
             Console.WriteLine("Medicamentele sunt:");
 
@@ -94,16 +112,46 @@ namespace testpiu
                 AfisareMedicament(med);
             }
         }
-        public static medicament GetMedicament(string denum)
+        public static void GetMedsCat()
         {
-            foreach (medicament med in meds)
+            Console.WriteLine("Introduceti categoria/categoriile cautate:");
+            string catString = Console.ReadLine();
+            medicament tempmed = new medicament();
+            tempmed.setcat(catString);
+            List<medicament> meds = adminMed.GetMedsCat(tempmed.categorii);
+            if (meds.Count == 0)
             {
-                if (denum == med.den)
+                Console.WriteLine("Nu exista medicamente care sa corespunda categoriilor cautate.");
+            }
+            else
+            {
+                Console.WriteLine("Medicamentele care corespund categoriilor cautate sunt:");
                 {
-                    return med;
+                    AfisareMedicamente(meds);
                 }
             }
-            return null;
+
+        }
+        public static void GetMedicament()
+        {
+            medicament md = null;
+            Console.WriteLine("Introduceti Denumirea, spatiu gol pentru id");
+            string denum = Console.ReadLine();
+            if (string.IsNullOrEmpty(denum))
+            {
+                Console.WriteLine("Introduceti ID");
+                string idString = Console.ReadLine();
+                int.TryParse(idString, out int id);
+                md = adminMed.GetMed(id);
+            }
+            else
+            {
+                md = adminMed.GetMed(denum);
+            }
+            if (md == null)
+                Console.WriteLine("Medicamentul nu a fost introdus");
+            else
+                AfisareMedicament(md);
         }
     }
 }
