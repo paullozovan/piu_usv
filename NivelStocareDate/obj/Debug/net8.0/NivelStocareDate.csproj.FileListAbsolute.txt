@@ -1,0 +1,15 @@
+D:\prog\piu\NivelStocareDate\bin\Debug\net8.0\NivelStocareDate.deps.json
+D:\prog\piu\NivelStocareDate\bin\Debug\net8.0\NivelStocareDate.dll
+D:\prog\piu\NivelStocareDate\bin\Debug\net8.0\NivelStocareDate.pdb
+D:\prog\piu\NivelStocareDate\bin\Debug\net8.0\LibrarieModele.dll
+D:\prog\piu\NivelStocareDate\bin\Debug\net8.0\LibrarieModele.pdb
+D:\prog\piu\NivelStocareDate\obj\Debug\net8.0\NivelStocareDate.csproj.AssemblyReference.cache
+D:\prog\piu\NivelStocareDate\obj\Debug\net8.0\NivelStocareDate.GeneratedMSBuildEditorConfig.editorconfig
+D:\prog\piu\NivelStocareDate\obj\Debug\net8.0\NivelStocareDate.AssemblyInfoInputs.cache
+D:\prog\piu\NivelStocareDate\obj\Debug\net8.0\NivelStocareDate.AssemblyInfo.cs
+D:\prog\piu\NivelStocareDate\obj\Debug\net8.0\NivelStocareDate.csproj.CoreCompileInputs.cache
+D:\prog\piu\NivelStocareDate\obj\Debug\net8.0\NivelSto.ECC26E05.Up2Date
+D:\prog\piu\NivelStocareDate\obj\Debug\net8.0\NivelStocareDate.dll
+D:\prog\piu\NivelStocareDate\obj\Debug\net8.0\refint\NivelStocareDate.dll
+D:\prog\piu\NivelStocareDate\obj\Debug\net8.0\NivelStocareDate.pdb
+D:\prog\piu\NivelStocareDate\obj\Debug\net8.0\ref\NivelStocareDate.dll

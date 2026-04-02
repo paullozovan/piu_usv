@@ -1,0 +1,11 @@
+D:\prog\piu\LibrarieModele\bin\Debug\net8.0\LibrarieModele.deps.json
+D:\prog\piu\LibrarieModele\bin\Debug\net8.0\LibrarieModele.dll
+D:\prog\piu\LibrarieModele\bin\Debug\net8.0\LibrarieModele.pdb
+D:\prog\piu\LibrarieModele\obj\Debug\net8.0\LibrarieModele.GeneratedMSBuildEditorConfig.editorconfig
+D:\prog\piu\LibrarieModele\obj\Debug\net8.0\LibrarieModele.AssemblyInfoInputs.cache
+D:\prog\piu\LibrarieModele\obj\Debug\net8.0\LibrarieModele.AssemblyInfo.cs
+D:\prog\piu\LibrarieModele\obj\Debug\net8.0\LibrarieModele.csproj.CoreCompileInputs.cache
+D:\prog\piu\LibrarieModele\obj\Debug\net8.0\LibrarieModele.dll
+D:\prog\piu\LibrarieModele\obj\Debug\net8.0\refint\LibrarieModele.dll
+D:\prog\piu\LibrarieModele\obj\Debug\net8.0\LibrarieModele.pdb
+D:\prog\piu\LibrarieModele\obj\Debug\net8.0\ref\LibrarieModele.dll
